@@ -4,6 +4,7 @@ class Main {
 
     private static String[] multisetAsString;
     private static double[] multisetA;
+    private static double[] multisetB;
 
     public static void main(String[] args) {
 
@@ -13,7 +14,9 @@ class Main {
         multisetAsString = scanner.nextLine().split("[, \n]+");
         multisetA = convertToDouble(multisetAsString);
 
-
+        System.out.print("*** Inserire il secondo multiset usando ',' come separatore dei valori: ");
+        multisetAsString = scanner.nextLine().split("[, \n]+");
+        multisetB = convertToDouble(multisetAsString);
 
         scanner.close();
     }
