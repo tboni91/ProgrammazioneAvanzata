@@ -1,18 +1,17 @@
 import java.util.Arrays;
 
 public class RealValuesMultiset {
-    private final String SEPARATOR = ",";
     private double[] realValues;
 
-    public RealValuesMultiset(String multiset) {
-        realValues = toRealValues(multiset);
+    public RealValuesMultiset(double... multiset) {
+        this.realValues = multiset;
         Arrays.sort(realValues);
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("multiset: {");
+        builder.append("multiset = {");
         String separator = "";
 
         int frequency = 1;
@@ -43,22 +42,5 @@ public class RealValuesMultiset {
 
         RealValuesMultiset that = (RealValuesMultiset) o;
         return Arrays.equals(realValues, that.realValues);
-    }
-
-    private double[] toRealValues (String multiset) {
-        double[] realValues;
-        multiset = multiset.trim();
-
-        if (multiset == null || multiset.length() == 0) {
-            realValues = new double[0];
-        } else {
-            String[] stringValues = multiset.split(SEPARATOR);
-            realValues = new double[stringValues.length];
-            for (int i = 0; i < realValues.length; i++) {
-                realValues[i] = Double.parseDouble(stringValues[i]);
-            }
-        }
-
-        return realValues;
     }
 }
