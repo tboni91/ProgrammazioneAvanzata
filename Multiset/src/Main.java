@@ -2,32 +2,28 @@ import java.util.Scanner;
 
 class Main {
 
-    private static String[] multisetAsString;
-    private static double[] multisetA;
-    private static double[] multisetB;
+    private static String firstMultiset;
+    private static String secondMultiset;
 
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("*** Inserire il primo multiset usando ',' come separatore dei valori: ");
-        multisetAsString = scanner.nextLine().split("[, \n]+");
-        multisetA = convertToDouble(multisetAsString);
+        firstMultiset = getMultiset(scanner,"first");
+        RealValuesMultiset multisetA = new RealValuesMultiset(firstMultiset);
+        secondMultiset = getMultiset(scanner,"second");
+        RealValuesMultiset multisetB = new RealValuesMultiset(secondMultiset);
 
-        System.out.print("*** Inserire il secondo multiset usando ',' come separatore dei valori: ");
-        multisetAsString = scanner.nextLine().split("[, \n]+");
-        multisetB = convertToDouble(multisetAsString);
+        System.out.println(String.format("The two multiset [value (freq.)]:\n1. %s\n2. %s", multisetA, multisetB));
 
+        System.out.println(multisetA.equals(multisetB) ? "Are equal" : "Are not equal");
         scanner.close();
     }
 
-    private static double[] convertToDouble (String[] str) {
-        double[] values = new double[str.length];
-
-        for (int i=0; i<str.length; i++) {
-            values[i] = Double.parseDouble(multisetAsString[i]);
-        }
-
-        return values;
+    private static String getMultiset (Scanner scanner, String num) {
+        String multisetAsString;
+        System.out.print("Insert " + num + " multiset as sequence of comma-separated real numbers: ");
+        multisetAsString = scanner.nextLine();
+        return multisetAsString;
     }
+
 }
